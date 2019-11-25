@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="screen-recorder"
+    version="1.0.0">
+    <name>Screen Recorder Plugin</name>
+    <description></description>
+    <license>MIT</license>
+    <keywords></keywords>
+
+    <platform name="browser">
+      <js-module src="www/plugin.js" name="plugin">
+        <runs/>
+
+        <!-- This is the window variable name you want, like window.MyCordovaPlugin -->
+        <clobbers target="ScreenRecorderPlugin" />
+      </js-module>
+    </platform>
+    <!-- android -->
+    <platform name="android">
+      <framework src="com.android.support:appcompat-v7:26.+" value="gradle" />
+      <js-module src="www/plugin.js" name="plugin">
+        <runs/>
+
+        <!-- This is the window variable name you want, like window.MyCordovaPlugin -->
+        <clobbers target="ScreenRecorderPlugin" />
+      </js-module>
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="ScreenRecorderPlugin">
+          <param name="android-package" value="net.plugins.screenrecorder.ScreenRecorderPlugin" />
+          <param name="onload" value="false" />
+        </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+          <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+          <uses-permission android:name="android.permission.RECORD_AUDIO"/>        
+          <uses-permission android:name="android.permission.WRITE_SETTINGS"/>        
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest/application">   
+          <service
+            android:label="@string/app_name"
+            android:name="net.plugins.screenrecorder.ScreenRecorderService"
+            android:exported="false">
+          </service>
+      </config-file>
+      <source-file src="src/android/net/plugins/screenrecorder/ScreenRecorderPlugin.java" target-dir="src/net/plugins/screenrecorder/" />
+      <source-file src="src/android/net/plugins/screenrecorder/ScreenRecorder.java" target-dir="src/net/plugins/screenrecorder" />
+      <source-file src="src/android/net/plugins/screenrecorder/ScreenRecorderService.java" target-dir="src/net/plugins/screenrecorder" />
+    </platform>
+
+</plugin>

@@ -1,0 +1,11 @@
+{
+  "name": "screen-recording-plugin",
+  "version": "1.0.0",
+  "cordova": {
+    "id": "screen-recording-plugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "description": "A cordova plugin for recording screen"
+}
